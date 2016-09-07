@@ -30,14 +30,10 @@ import UIKit
 internal extension UIApplication {
     ///- returns: the shared application or nil, if we are in an extension.
     static func safeSharedApplication() -> UIApplication? {
-        guard UIApplication.sharedApplication? else {
+        guard let app = UIApplication.shared else {
             return nil
         }
 
-        guard let unmanagedSharedApplication = UIApplication.sharedApplication else {
-            return nil
-        }
-
-        return unmanagedSharedApplication.takeRetainedValue() as? UIApplication
+        return app
     }
 }
